@@ -1,7 +1,7 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: user
- * Date: 02-Apr-19
- * Time: 2:25 PM
- */
+<?php $active_page = "post_page";?>
+@extends("layouts.layout01",compact("active_page"))
+@section("page_title","Edit Post")
+
+@section("page_content")
+    @include("posts.form",compact("post"))
+@endsection

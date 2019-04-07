@@ -12,6 +12,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    protected $validation = array(
+        'title' => 'required||max:255',
+        'body' => 'required'
+    );
+
     public function index()
     {
         $posts = Post::paginate(10);
@@ -25,7 +30,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $post = new Post();
+        return view("posts.create", compact("post"));
     }
 
     /**
@@ -57,9 +63,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        //
+        $post = Post::where("slug",$slug)->first();
     }
 
     /**
@@ -80,8 +86,8 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($slug)
     {
-        //
+        $post = Post::where("slug",$slug)->first();
     }
 }
